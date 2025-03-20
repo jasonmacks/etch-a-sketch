@@ -1,21 +1,33 @@
-document.getElementById("generateGrid").addEventListener("click", () => {
-  const gridSize = parseInt(document.getElementById("gridSizeInput").value);
-  if (gridSize < 1 || gridSize > 100) {
-    return;
-  }
-  if (!isNaN(gridSize) && gridSize > 0) {
-    createGrid(gridSize, 10);
+// Takes input from user to create grid size
+
+const button = document.getElementById("generateGrid");
+const input = document.getElementById("gridSizeInput");
+
+function gridGeneration() {
+  let gridSize = parseInt(input.value) || 1;
+  gridSize = Math.min(100, Math.max(1, gridSize)); // Keeps value between 1 and 100
+
+  createGrid(gridSize); // Calls createGrid function, passing in the user input (gridSize) as the argument
+  input.value = "";
+}
+
+button.addEventListener("click", gridGeneration);
+input.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    gridGeneration();
   }
 });
 
-function createGrid(gridSize, squareSize) {
+function createGrid(gridSize) {
   const container = document.querySelector(".container");
   container.innerHTML = "";
 
-  //Style Container
+  const containerSize = Math.min(window.innerWidth, window.innerHeight) * 0.8;
+  const squareSize = containerSize / gridSize;
 
-  container.style.width = `${gridSize * squareSize}px`;
-  container.style.height = `${gridSize * squareSize}px`;
+  //Style Container
+  container.style.width = `${containerSize}px`;
+  container.style.height = `${containerSize}px`;
   container.style.display = "flex";
   container.style.flexWrap = "wrap";
   container.style.justifyContent = "center";

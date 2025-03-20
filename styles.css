@@ -17,8 +17,8 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: fit-content;
-  margin: 20px auto;
+  /* width: fit-content; */
+  margin: auto;
 }
 
 .square {
@@ -28,8 +28,12 @@ body {
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
   margin: 0;
+}
+
+label {
+  font-size: 30px;
 }
